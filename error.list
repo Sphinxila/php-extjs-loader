@@ -1,0 +1,3 @@
+404 ProjectLoaderException  Fatal error - possible: file got removed during runtime
+500 ProjectLoaderException  File empty or permission denied..
+700 ProjectLoaderException  Define redeclaration

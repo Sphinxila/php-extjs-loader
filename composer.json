@@ -1,0 +1,38 @@
+{
+  "name" : "composer/extjs-loader",
+  "type": "library",
+  "description": "Sencha - ExtJS 4.0.x - 6.0.x Architect project parser",
+  "keywords": ["framework"],
+  "license": "GPL v3",
+
+  "authors": [
+    {
+      "name": "Sphinxila",
+      "email": "sphinx@sphinx.li",
+      "homepage": "http://sphinx.li",
+      "role": "Lead Developer"
+    }
+  ],
+
+  "require": {
+    "php": ">=7.1.0",
+    "matthiasmullie/minify" : "*"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "ExtJSLoader\\" : "src",
+      "ExtJSLoader\\Exception\\" : "src/exception",
+      "ExtJSLoader\\Facade\\" : "src/facade",
+      "ExtJSLoader\\Model\\" : "src/model"
+    }
+  },
+
+  "extra": {
+    "branch-alias": {
+      "dev-master": "master"
+    }
+  },
+
+  "minimum-stability": "dev"
+}
