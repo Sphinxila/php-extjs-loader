@@ -1,7 +1,7 @@
 {
   "name" : "composer/extjs-loader",
   "type": "library",
-  "description": "Sencha - ExtJS 4.0.x - 6.0.x Architect project parser",
+  "description": "Sencha - ExtJS 4.0.x - 6.2.x Architect project loader",
   "keywords": ["framework"],
   "license": "GPL v3",
 
