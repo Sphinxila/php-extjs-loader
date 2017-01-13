@@ -127,8 +127,8 @@ class Project {
     public function getCode(bool $compress = false): string
     {
         $buffer = "";
-        foreach ($this->project()->getOrder() as $path) {
-            $buffer .= $this->project()->getFile($path)["content"];
+        foreach ($this->project->getOrder() as $path) {
+            $buffer .= $this->project->getFile($path)["content"];
         }
 
         // Minify
@@ -149,7 +149,7 @@ class Project {
     private function handle(): void
     {
         // File
-        foreach ($this->project()->getFiles() as $path => &$info) {
+        foreach ($this->project->getFiles() as $path => &$info) {
             // Basename
             $file = basename($path);
 
@@ -158,15 +158,20 @@ class Project {
 
             // Parse
             ProjectParser::parse($path, $info['content']);
+
+            // Update file
+            $this->project->setFile($path, $info);
         }
         return;
     }
 
     /**
+     * Handler
      * @param string $filename
      * @param array $info
+     * @return array
      */
-    private function handler(string $filename, array &$info): void
+    private function handler(string $filename, array &$info)
     {
         // Build Method name
         $method = "parse".str_replace(".", "", $filename);
@@ -175,7 +180,6 @@ class Project {
         if (method_exists($this,$method)) {
             $this->$method($info['content'], $info);
         }
-        return;
     }
 
     /**
@@ -191,7 +195,7 @@ class Project {
      * Load XVT
      * @return ProjectModel
      */
-    private function xvt(): ProjectModel
+    private function loadXVT(): ProjectModel
     {
         $project = new ProjectModel();
 
@@ -208,7 +212,7 @@ class Project {
      * Get project
      * @return ProjectModel
      */
-    private function project(): ProjectModel
+    private function createProject(): ProjectModel
     {
         // Sencha project loader
         $loader = new ProjectLoader(
@@ -254,13 +258,13 @@ class Project {
             $this->dirty = false;
 
             // Initialize from XVT
-            $this->project = $this->xvt();
+            $this->project = $this->loadXVT();
         } else {
             // Possibly dirty...
             $this->dirty = true;
 
             // Initialize from raw sencha project
-            $this->project = $this->project();
+            $this->project = $this->createProject();
         }
 
         // Dump

@@ -30,7 +30,7 @@ trait ExtParser {
      * @param $end
      * @return string
      */
-    private function getStringBetween($string, $start, $end){
+    private function getStringBetween($string, $start, $end): string {
         $string = ' ' . $string;
         $ini = strpos($string, $start);
         if ($ini == 0) return '';
@@ -42,8 +42,9 @@ trait ExtParser {
     /**
      * @param string $buffer
      * @param array $info
+     * @return string
      */
-    public function parseAppJS(string &$buffer, array $info)
+    public function parseAppJS(string &$buffer, array &$info)
     {
         // App instance
         $launch = $this->appName . ".appInstance = this;\n";
