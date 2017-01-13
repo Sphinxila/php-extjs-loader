@@ -46,7 +46,7 @@ To use this library you need to add the following in your composer.json
 ## License / Copying ##
 
 This project is released under the GPL v3 license, so feel free to share
-or modify this.
+or modify it.
 
 ## Bug report ##
 To get a faster bug resolvement please provide an example code.
