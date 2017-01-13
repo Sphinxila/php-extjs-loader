@@ -113,7 +113,7 @@ class Project {
 
         // Minify
         if ($compress) {
-            $minfy = new Minify\JS();
+            $minfy = new \MatthiasMullie\Minify\JS();
             $minfy->add($buffer);
 
             // Output
