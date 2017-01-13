@@ -40,6 +40,7 @@ trait ExtParser {
     }
 
     /**
+     * TODO: <sphinx> rewrite this crap...
      * @param string $buffer
      * @param array $info
      * @return string
@@ -53,14 +54,22 @@ trait ExtParser {
         $pattern = '/Ext\.create\(\'(.*)\'\);/isU';
 
         // Preg match
-        if (preg_match($pattern, $info["content"], $matches)) {
+        if (preg_match($pattern, $buffer, $matches)) {
             // If new target is needed
             if (!is_null($this->target)) {
                 $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
                 $launch = str_replace($matches[0], "", $launch);
             } else {
+                // Default
                 $launch .= "var application = new ".$matches[1]."(); \n";
-                $launch = str_replace($matches[0], "", $launch . $matches[0]);
+            }
+        } else {
+            $pattern = '/Ext\.create\(\'(.*)\', \{renderTo: Ext\.getBody\(\)\}\);/isU';
+            if (preg_match($pattern, $buffer, $matches)) {
+                $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
+            } else {
+                // Default
+                $launch .= "var application = new ".$matches[1]."(); \n";
             }
         }
 
