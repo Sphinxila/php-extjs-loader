@@ -3,6 +3,7 @@
 namespace ExtJSLoader;
 
 use ExtJSLoader\Model\Project as ProjectModel;
+use ExtJSLoader\Parser\ExtParser;
 
 /**
  * Project loader (wrapper)
@@ -11,6 +12,9 @@ use ExtJSLoader\Model\Project as ProjectModel;
  */
 
 class Project {
+    // Use default parser
+    use ExtParser;
+
     /** @var string */
     private $appName;
 
@@ -65,39 +69,42 @@ class Project {
      * Set sub directory
      * @param string $subDir
      */
-    public function setSubDir(string $subDir)
+    public function setSubDir(string $subDir): void
     {
         $this->subDir = $subDir;
+        return;
     }
 
     /**
      * Set app js name (backward compatibility for ext3 etc.)
      * @param string $appJS
      */
-    public function setAppJS(string $appJS)
+    public function setAppJS(string $appJS): void
     {
         $this->appJS = $appJS;
+        return;
     }
 
     /**
      * @param bool $compiled
      * @param bool $compile
      */
-    public function load(bool $compiled = false, bool $compile = false)
+    public function load(bool $compiled = false, bool $compile = false): void
     {
         // Get project
         $this->loadProject($compiled, $compile);
 
         // Change target
         $this->handle();
+        return;
     }
 
     /**
      * Get code
-     * @param bool $minify
+     * @param bool $compress
      * @return string
      */
-    public function getCode(bool $minify = false): string
+    public function getCode(bool $compress = false): string
     {
         $buffer = "";
         foreach ($this->project()->getOrder() as $path) {
@@ -105,7 +112,7 @@ class Project {
         }
 
         // Minify
-        if ($minify) {
+        if ($compress) {
             $minfy = new Minify\JS();
             $minfy->add($buffer);
 
@@ -139,26 +146,16 @@ class Project {
      * @param string $filename
      * @param array $info
      */
-    private function handler(string $filename, array &$info)
+    private function handler(string $filename, array &$info): void
     {
-        switch($filename) {
-            // Application JS
-            case $this->appJS:
-                // Reset instance
-                $launch = $this->appName . ".appInstance = this;\n";
+        // Build Method name
+        $method = "parse".str_replace(".", "", $filename);
 
-                $pattern = '/Ext\.create\(\'(.*)\'\);/isU';
-                if (preg_match($pattern, $info["content"], $matches)) {
-                    // If new target is needed
-                    if (!is_null($this->target)) {
-                        $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
-                        $info["content"] = str_replace($matches[0], "", $launch);
-                    } else {
-                        $info["content"] = str_replace($matches[0], "", $launch . $matches[0]);
-                    }
-                }
-                break;
+        // Check method parse exist
+        if (method_exists($this,$method)) {
+            $this->$method($info['content'], $info);
         }
+        return;
     }
 
     /**
@@ -247,7 +244,7 @@ class Project {
         }
 
         // Dump
-        if ($this->dirty === true)
+        if ($this->dirty === true && $compile)
             $this->write();
 
         return $this->project;

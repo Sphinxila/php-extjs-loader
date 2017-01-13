@@ -116,7 +116,7 @@ class ProjectLoader {
             $this->project->addPath($appJS);
         }
 
-        return sizeof($this->project->pathSize()) > 1 ? true : false;
+        return $this->project->pathSize() > 1 ? true : false;
     }
 
     /**

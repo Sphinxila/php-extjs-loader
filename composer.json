@@ -24,6 +24,7 @@
       "ExtJSLoader\\" : "src",
       "ExtJSLoader\\Exception\\" : "src/exception",
       "ExtJSLoader\\Facade\\" : "src/facade",
+      "ExtJSLoader\\Parser\\" : "src/parser",
       "ExtJSLoader\\Model\\" : "src/model"
     }
   },

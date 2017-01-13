@@ -9,7 +9,7 @@ trait Serializable {
      * Serializable
      * @var array
      */
-    public $serializable = [];
+    //public $serializable = [];
 
     /** @var int */
     public $version = 0;
