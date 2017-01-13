@@ -1,5 +1,5 @@
 {
-  "name" : "Sphinxila/php-extjs-loader",
+  "name" : "sphinxila/php-extjs-loader",
   "type": "library",
   "description": "Sencha - ExtJS 4.0.x - 6.2.x Architect project loader",
   "keywords": ["framework"],

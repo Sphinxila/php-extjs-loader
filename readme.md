@@ -41,7 +41,7 @@ Easy implementation
 ## Installation ##
 To use this library you need to add the following in your composer.json
 
-    Sphinxila/php-extjs-loader
+    sphinxila/php-extjs-loader
 
 ## License / Copying ##
 
