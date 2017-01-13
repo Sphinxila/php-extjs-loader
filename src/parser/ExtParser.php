@@ -59,6 +59,7 @@ trait ExtParser {
                 $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
                 $launch = str_replace($matches[0], "", $launch);
             } else {
+                $launch .= "var application = new ".$matches[1]."(); \n";
                 $launch = str_replace($matches[0], "", $launch . $matches[0]);
             }
         }
