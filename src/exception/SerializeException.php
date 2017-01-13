@@ -1,6 +1,6 @@
 <?php
 
-namespace ExtJsLoader\Exception;
+namespace ExtJSLoader\Exception;
 
 class SerializeException extends \Exception {
     /** @var string */

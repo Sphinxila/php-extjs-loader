@@ -1,6 +1,6 @@
 <?php
 
-namespace ExtJsLoader\Exception;
+namespace ExtJSLoader\Exception;
 
 class ProjectLoaderException extends \Exception {
     /** @var string */

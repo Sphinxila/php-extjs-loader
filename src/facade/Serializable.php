@@ -2,7 +2,7 @@
 
 namespace ExtJSLoader\Facade;
 
-use ExtJsLoader\Exception\SerializeException;
+use ExtJSLoader\Exception\SerializeException;
 
 trait Serializable {
     /**

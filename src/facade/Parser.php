@@ -1,15 +1,8 @@
 <?php
 
-namespace ExtJsLoader\Facade;
+namespace ExtJSLoader\Facade;
 
 interface Parser {
-    /**
-     * Parser constructor.
-     * @param string $path Path to the ExtJS Project
-     * @param string $projectID Project ID
-     */
-    public function __construct(string $path, string $projectID);
-
     /**
      * This function needs to return the parsed string
      * @param string $path

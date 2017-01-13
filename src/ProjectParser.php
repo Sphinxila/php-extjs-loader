@@ -2,7 +2,7 @@
 
 namespace ExtJSLoader;
 
-use ExtJsLoader\Facade\Parser;
+use ExtJSLoader\Facade\Parser;
 
 class ProjectParser {
     /** @var Parser[] */

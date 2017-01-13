@@ -1,7 +1,7 @@
 <?php
 
 namespace ExtJSLoader;
-use ExtJsLoader\Exception\ProjectLoaderException;
+use ExtJSLoader\Exception\ProjectLoaderException;
 use ExtJSLoader\Model\Project;
 
 /**
