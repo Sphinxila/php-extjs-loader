@@ -33,10 +33,10 @@ load  project from a 'compiled' (dump) file.
 
 ## Examples ##
 Easy implementation
-- [Load architect project](examples/TestProject.php)
-- [Load compiled architect project](examples/TestCompiledProject.php)
-- [Extend loader with a custom parser](examples/TestExtendedParserProject.php)
-- [Minify / Compress JS output](examples/TestCompressedProject.php)
+- [Load architect project](example/TestProject.php)
+- [Load compiled architect project](example/TestCompiledProject.php)
+- [Extend loader with a custom parser](example/TestExtendedParserProject.php)
+- [Minify / Compress JS output](example/TestCompressedProject.php)
 
 ## Installation ##
 To use this library you need to add the following in your composer.json
