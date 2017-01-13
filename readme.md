@@ -4,18 +4,18 @@ This library allows you to load architect projects directly into your applicatio
 loading the js files separately. 
 
 The supplied internal project parser is resolving
-all conflicts and provide the sorted code.
+all conflicts and provides the sorted code.
 
 
 #### Extending the internal parser ####
-You can easly extend the internal project parser
+You can easily extend the internal project parser
 
     \ExtJSLoader\ProjectParser::registerParser((
         new Parser()
     ));
 
 #### Dump the project files for remote deployment without any *.xds files or metadata ####
-If you provide the application for external customers and you don't want to deploy your project files, you can 
+If you provide the application to external customers and you don't want to deploy your project files, you can 
 load  project from a 'compiled' (dump) file.
 
     $loader = new \ExtJSLoader\Project(
