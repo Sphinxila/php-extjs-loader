@@ -18,7 +18,7 @@ You can easly extend the internal project parser
 If you provide the application for external customers and you don't want to deploy your project files, you can 
 load  project from a 'compiled' (dump) file.
 
-    new \ExtJSLoader\Project(
+    $loader = new \ExtJSLoader\Project(
         "TestArchitectProject",                     //  Application name
         __DIR__ . "/../test/TestArchitectProject",  //  Root directory
         __DIR__ . "/TestCompiledProject.xvt",       //  Compiled path!
@@ -26,10 +26,10 @@ load  project from a 'compiled' (dump) file.
     );
 
     // Use compiled project if exists
-    $this->loader->load(true, true);
+    $loader->load(true, true);
     
     // Get code
-    echo $this->loader->getCode();
+    echo $loader->getCode();
 
 ## Examples ##
 Easy implementation
