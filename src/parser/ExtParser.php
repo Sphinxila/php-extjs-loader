@@ -24,23 +24,6 @@ namespace ExtJSLoader\Parser;
 
 trait ExtParser {
     /**
-     * String between
-     * @param $string
-     * @param $start
-     * @param $end
-     * @return string
-     */
-    private function getStringBetween($string, $start, $end): string {
-        $string = ' ' . $string;
-        $ini = strpos($string, $start);
-        if ($ini == 0) return '';
-        $ini += strlen($start);
-        $len = strpos($string, $end, $ini) - $ini;
-        return substr($string, $ini, $len);
-    }
-
-    /**
-     * TODO: <sphinx> rewrite this crap...
      * @param string $buffer
      * @param array $info
      * @return string
@@ -48,33 +31,48 @@ trait ExtParser {
     public function parseAppJS(string &$buffer, array &$info)
     {
         // App instance
-        $launch = $this->appName . ".appInstance = this;\n";
+        $launch = $this->appName . ".applicationInstance = this;\n";
 
-        // Get create part
-        $pattern = '/Ext\.create\(\'(.*)\'\);/isU';
+        // Patterns
+        $patterns = [
+            "default" => [
+                "pattern" => "/Ext\.create\(\'(.*)\'\);/isU",
+                "replacer" => function(string $launch, string &$buffer, array $matches, string $target = null): bool {
+                    // Replace launch
+                    if ($target)
+                        $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
+                    else
+                        $launch .= "var application = new ".$matches[1]."();";
 
-        // Preg match
-        if (preg_match($pattern, $buffer, $matches)) {
-            // If new target is needed
-            if (!is_null($this->target)) {
-                $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
-                $launch = str_replace($matches[0], "", $launch);
-            } else {
-                // Default
-                $launch .= "var application = new ".$matches[1]."(); \n";
-            }
-        } else {
-            $pattern = '/Ext\.create\(\'(.*)\', \{renderTo: Ext\.getBody\(\)\}\);/isU';
-            if (preg_match($pattern, $buffer, $matches)) {
-                $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
-            } else {
-                // Default
-                $launch .= "var application = new ".$matches[1]."(); \n";
+                    // Buffer
+                    $buffer = str_replace($matches[0], $launch, $buffer);
+                    return true;
+                }
+            ],
+            "render" => [
+                "pattern" => "/Ext\.create\('(.*)', \{renderTo: Ext\.getBody\(\)\}\);/isU",
+                "replacer" => function(string $launch, string &$buffer, array $matches, string $target = null): bool {
+                    // Replace launch
+                    if ($target)
+                        $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
+                    else
+                        $launch .= "var application = new ".$matches[1]."();";
+
+                    // Buffer
+                    $buffer = str_replace($matches[0], $launch, $buffer);
+                    return true;
+                }
+            ],
+        ];
+
+        // Loop trough patterns
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern["pattern"], $buffer, $matches)) {
+                if ($pattern["replacer"]($launch, $buffer, $matches, $this->target))
+                    break;
             }
         }
 
-        // Trim
-        $code = trim($this->getStringBetween($buffer, "launch: function() {", "}"));
-        $buffer = str_replace($code, $launch, $buffer);
+        return $buffer;
     }
 }
