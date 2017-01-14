@@ -89,6 +89,16 @@ class Project {
     }
 
     /**
+     * Set target
+     * @param string $target
+     */
+    public function setTarget(string $target): void
+    {
+        $this->target = $target;
+        return;
+    }
+
+    /**
      * @param bool $state
      */
     public function setLaunchState(bool $state): void
