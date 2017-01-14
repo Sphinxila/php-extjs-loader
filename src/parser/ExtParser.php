@@ -39,7 +39,7 @@ trait ExtParser {
                 "pattern" => "/Ext\.create\(\'(.*)\'\);/isU",
                 "replacer" => function(string $launch, string &$buffer, array $matches, string $target = null): bool {
                     // Replace launch
-                    if ($this->disableLaunch)
+                    if ($this->launchState === false)
                         $launch = "";
                     else if ($target)
                         $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";
@@ -55,7 +55,7 @@ trait ExtParser {
                 "pattern" => "/Ext\.create\('(.*)', \{renderTo: Ext\.getBody\(\)\}\);/isU",
                 "replacer" => function(string $launch, string &$buffer, array $matches, string $target = null): bool {
                     // Replace launch
-                    if ($this->disableLaunch)
+                    if ($this->launchState === false)
                         $launch = "";
                     else if ($target)
                         $launch .= "Ext.getCmp('".$this->target."').add(new ".$matches[1]."()); \n";

@@ -60,7 +60,7 @@ class Project {
     private $project;
 
     /** @var bool */
-    private $disableLaunch = false;
+    private $launchState = true;
 
     /**
      * Project constructor.
@@ -89,11 +89,11 @@ class Project {
     }
 
     /**
-     * @param bool $disable
+     * @param bool $state
      */
-    public function setLaunchState(bool $disable): void
+    public function setLaunchState(bool $state): void
     {
-        $this->disableLaunch = $disable;
+        $this->launchState = $state;
         return;
     }
 
