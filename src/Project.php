@@ -59,6 +59,9 @@ class Project {
     /** @var \ExtJSLoader\Model\Project */
     private $project;
 
+    /** @var bool */
+    private $disableLaunch = false;
+
     /**
      * Project constructor.
      * @param string $appName
@@ -83,6 +86,15 @@ class Project {
 
         // Target
         $this->target = $target;
+    }
+
+    /**
+     * @param bool $disable
+     */
+    public function setLaunchState(bool $disable): void
+    {
+        $this->disableLaunch = $disable;
+        return;
     }
 
     /**
