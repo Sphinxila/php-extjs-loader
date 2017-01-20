@@ -62,6 +62,9 @@ class Project {
     /** @var bool */
     private $launchState = true;
 
+    /** @var string */
+    private $launchCode;
+
     /**
      * Project constructor.
      * @param string $appName
@@ -104,6 +107,16 @@ class Project {
     public function setLaunchState(bool $state): void
     {
         $this->launchState = $state;
+        return;
+    }
+
+    /**
+     * Set launch code
+     * @param string $code
+     */
+    public function setLaunchCode(string $code): void
+    {
+        $this->launchCode = $code;
         return;
     }
 

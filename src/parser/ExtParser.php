@@ -24,6 +24,20 @@ namespace ExtJSLoader\Parser;
 
 trait ExtParser {
     /**
+     * Launch code
+     * @param string $code
+     * @param string $appName
+     * @param string $default
+     * @return string
+     */
+    private function launchCode(string $code, string $appName, string $default): string
+    {
+        if (!is_null($code))
+            return str_replace("{{loader_appName}}", $appName, $code);
+        return $default;
+    }
+
+    /**
      * @param string $buffer
      * @param array $info
      * @return string
@@ -31,7 +45,11 @@ trait ExtParser {
     public function parseAppJS(string &$buffer, array &$info)
     {
         // App instance
-        $launch = $this->appName . ".applicationInstance = this;\n";
+        $launch = $this->launchCode(
+            $this->launchCode,
+            $this->appName,
+            $this->appName . ".applicationInstance = this;"
+        )."\n";
 
         // Patterns
         $patterns = [
