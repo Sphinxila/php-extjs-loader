@@ -6,6 +6,10 @@ loading the js files separately.
 The supplied internal project parser is resolving
 all conflicts and provides the sorted code.
 
+#### Add MVC Support for your ExtJS project ####
+
+You can build a modular project by loading projects into containers without
+modifying any of your projects files.
 
 #### Extending the internal parser ####
 You can easily extend the internal project parser
@@ -42,6 +46,10 @@ Easy implementation
 To use this library you need to add the following in your composer.json
 
     sphinxila/php-extjs-loader
+
+or run the following command in your project root
+
+    composer require sphinxila/php-extjs-loader
 
 ## License / Copying ##
 
