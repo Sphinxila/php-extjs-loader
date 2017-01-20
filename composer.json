@@ -2,7 +2,7 @@
   "name" : "sphinxila/php-extjs-loader",
   "type": "library",
   "description": "Sencha - ExtJS 4.0.x - 6.2.x Architect project loader",
-  "keywords": ["extjs", "sencha architect", "extjs architect mvc-support"],
+  "keywords": ["extjs", "sencha architect", "extjs architect mvc-support", "extjs mvc"],
   "license": "GPL v3",
 
   "authors": [
