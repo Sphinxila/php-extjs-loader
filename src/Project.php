@@ -63,7 +63,7 @@ class Project {
     private $launchState = true;
 
     /** @var string */
-    private $launchCode;
+    private $launchCode = "";
 
     /**
      * Project constructor.
