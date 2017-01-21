@@ -32,7 +32,7 @@ trait ExtParser {
      */
     private function launchCode(string $code, string $appName, string $default): string
     {
-        if (!is_null($code))
+        if (strlen($code) > 0)
             return str_replace("{{loader_appName}}", $appName, $code);
         return $default;
     }
