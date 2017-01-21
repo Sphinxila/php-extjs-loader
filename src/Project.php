@@ -102,6 +102,15 @@ class Project {
     }
 
     /**
+     * Get target
+     * @return string
+     */
+    public function getTarget(): string
+    {
+        return !is_null($this->target) ? $this->target : "";
+    }
+
+    /**
      * @param bool $state
      */
     public function setLaunchState(bool $state): void
