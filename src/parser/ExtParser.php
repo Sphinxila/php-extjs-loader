@@ -48,7 +48,7 @@ trait ExtParser {
         $launch = $this->launchCode(
             $this->launchCode,
             $this->appName,
-            $this->appName . ".applicationInstance = this;"
+            "window." . $this->appName . ".applicationInstance = this;"
         )."\n";
 
         // Patterns
