@@ -60,7 +60,7 @@ trait ExtParser {
                     if ($this->launchState === false)
                         $launch = "";
                     else if ($target)
-                        $launch .= "this.app = new ".$matches[1]."(); Ext.getCmp('".$this->target."').add(app); \n";
+                        $launch .= "this.app = new ".$matches[1]."(); Ext.getCmp('".$this->target."').add(this.app); \n";
                     else
                         $launch .= "this.app = new ".$matches[1]."();";
 
@@ -76,7 +76,7 @@ trait ExtParser {
                     if ($this->launchState === false)
                         $launch = "";
                     else if ($target)
-                        $launch .= "this.app = new ".$matches[1]."(); Ext.getCmp('".$this->target."').add(app); \n";
+                        $launch .= "this.app = new ".$matches[1]."(); Ext.getCmp('".$this->target."').add(this.app); \n";
                     else
                         $launch .= "this.app = new ".$matches[1]."();";
 
