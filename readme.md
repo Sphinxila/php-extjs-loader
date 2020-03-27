@@ -45,11 +45,11 @@ Easy implementation
 ## Installation ##
 To use this library you need to add the following in your composer.json
 
-    sphinxila/php-extjs-loader
+    philip1337/php-extjs-loader
 
 or run the following command in your project root
 
-    composer require sphinxila/php-extjs-loader
+    composer require philip1337/php-extjs-loader
 
 ## License / Copying ##
 
